@@ -1,0 +1,17 @@
+# Static site: no build step. This file overrides the build settings in the Netlify UI.
+[build]
+  publish = "."
+  command = "echo 'Static site, no build needed'"
+
+# Long cache for versioned assets (CSS/JS use ?v= cache-busting)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

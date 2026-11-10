@@ -34,7 +34,8 @@ JSON-LD (Organization, ProfessionalService, Service, FAQPage, BreadcrumbList).
 
 This is a plain static site, so any static host works:
 
-- **Netlify / Vercel / Cloudflare Pages:** connect this repo, with no build command and the publish directory set to `/`.
+- **Netlify:** connect this repo and deploy. `netlify.toml` already sets no build step and the root publish directory, overriding the UI settings.
+- **Vercel / Cloudflare Pages:** connect this repo, with no build command and the output directory set to `/`.
 - **GitHub Pages:** Settings → Pages → deploy from `main` / root, then add the custom domain
   `scootermedia.ae` (this creates a `CNAME` file) and point DNS at GitHub Pages.
 - **Any web server:** upload the folder as is. Configure `404.html` as the not-found page.
