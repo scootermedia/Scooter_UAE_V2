@@ -1,19 +1,15 @@
 # Showreel video
 
-The home page hero plays a muted, looping background video from this folder:
+`showreel.mp4` is the home page hero background: the full Scooter reel (V5, 1:42),
+re-encoded for the web at 1280×720, H.264 + AAC, faststart, about 9.5 MB.
+It plays muted on a continuous loop; the speaker button in the hero turns sound on.
 
-- `showreel.mp4` (H.264, required)
-- `showreel.webm` (VP9, optional — smaller, used first when present)
+Source master: Google Drive "Showreel_Website.mp4" (1920×1080, 207 MB).
+Poster frame: `/assets/img/hero-poster.jpg` (frame at 0:02).
 
-Source reel: https://www.instagram.com/reel/De9RsRDCG6s/
-
-Recommended export: 1920×1080 (or 1080×1920 cropped to 16:9), 10–20 s seamless loop,
-no burned-in text, **no audio track needed**, target under 6 MB.
+To replace it, keep the same file name and re-encode with:
 
 ```bash
-ffmpeg -i reel.mp4 -an -vf "scale=1920:-2,crop=1920:1080" -c:v libx264 -preset slow -crf 26 -movflags +faststart showreel.mp4
-ffmpeg -i reel.mp4 -an -vf "scale=1920:-2,crop=1920:1080" -c:v libvpx-vp9 -b:v 0 -crf 36 showreel.webm
+ffmpeg -i master.mp4 -vf scale=1280:-2 -c:v libx264 -preset veryfast -crf 27 -pix_fmt yuv420p \
+  -movflags +faststart -c:a aac -b:a 96k showreel.mp4
 ```
-
-Until the file is added, the hero shows the dark poster (`/assets/img/hero-poster.jpg`).
-Replace that poster with a still frame from the reel for the best first paint.

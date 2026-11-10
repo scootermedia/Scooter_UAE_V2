@@ -30,6 +30,13 @@
     document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
     ['touchstart', 'click', 'scroll'].forEach(function (ev) { window.addEventListener(ev, kick, { once: true, passive: true }); });
     kick();
+    var reelBtn = document.querySelector('[data-act="reel"]');
+    if (reelBtn) reelBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      video.currentTime = 0; video.muted = false;
+      if (sound) { sound.setAttribute('aria-pressed', 'true'); sound.setAttribute('aria-label', 'Turn sound off'); }
+      var p = video.play(); if (p && p.catch) p.catch(function () { window.open(reelBtn.href, '_blank', 'noopener'); });
+    });
     if (sound) {
       sound.addEventListener('click', function () {
         video.muted = !video.muted;
