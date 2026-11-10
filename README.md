@@ -46,6 +46,12 @@ There is no backend. The brief form opens WhatsApp (+91 905 122 2997) or the vis
 email app with the brief pre-filled. To collect submissions server-side instead, point
 the `<form id="brief">` action at a form service (Formspree, Netlify Forms, etc.).
 
+## Client logos
+
+Official logos for all 38 clients live in `assets/img/clients/`. `sources.json` records where each
+file came from (the brand's own website, Wikimedia Commons or an official press kit). Logos show in
+grey and switch to full colour on hover. White-only logos are rendered black via the `dk` class.
+
 ## Brand
 
 - Colours: white `#FFFFFF`, black `#0A0A0A`, teal `#0F5C6D` (dark `#0A4652`, tint `#CFE5E9`)

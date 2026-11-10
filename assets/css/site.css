@@ -213,3 +213,19 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
   .faq{padding:80px var(--gutter)}
 }
 @media (min-width:961px){.nav .nav-cta{display:none}}
+
+/* Client logos */
+.lg{max-width:78%;max-height:44px;width:auto;height:auto;object-fit:contain;filter:grayscale(1);opacity:.7;transition:filter .25s ease,opacity .25s ease}
+.lg.dk{filter:brightness(0);opacity:.7}
+.tile .logo-box{flex:1;display:flex;align-items:center;justify-content:center;width:100%;min-height:0}
+.tile:hover .lg,.tile.on .lg,.tile:focus-visible .lg{filter:none;opacity:1}
+.tile:hover .lg.dk,.tile.on .lg.dk{filter:brightness(0);opacity:1}
+.tile{align-items:stretch}
+.tile .nm{text-align:center;color:var(--muted-2);font-weight:500}
+.tile.on{background:#fff;color:var(--ink);border:2px solid var(--teal)}
+.tile.seen{background:#fff;border-color:var(--teal-tint)}
+.logo-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.logo-cell{height:96px;border:1px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;transition:border-color .2s ease}
+.logo-cell:hover{border-color:var(--teal)}
+.logo-cell:hover .lg{filter:none;opacity:1}
+.logo-cell:hover .lg.dk{filter:brightness(0);opacity:1}
