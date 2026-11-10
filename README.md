@@ -1,6 +1,6 @@
 # scootermedia.ae — Scooter UAE website (v2)
 
-A static, dependency-free website for **Scooter**, a creative production studio in Dubai.
+A static, dependency-free website for **Scooter**, a video production company and production partner in Dubai and India.
 Plain HTML, one CSS file and one small JS file, with no build step and no framework.
 
 ## Pages (one URL each, for SEO)
