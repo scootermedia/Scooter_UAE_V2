@@ -88,8 +88,12 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 
 /* Steps */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px}
-.step{padding-top:20px;border-top:2px solid var(--line)}
-.step:first-child{border-top-color:var(--teal)}
+.step{position:relative;padding-top:20px;border-top:2px solid var(--line);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.step::before{content:"";position:absolute;left:0;top:-2px;height:2px;width:56px;background:var(--teal);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.step h3{transition:color .25s ease}
+.step:hover{transform:translateY(-6px)}
+.step:hover::before{width:100%}
+.step:hover h3{color:var(--teal)}
 .step .n{font-size:14px;font-weight:600;color:var(--teal)}
 .step h3{font-size:20px;font-weight:700;margin-top:8px;letter-spacing:-.02em}
 .step p{margin-top:8px;font-size:15px}
