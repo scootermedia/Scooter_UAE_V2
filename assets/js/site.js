@@ -20,6 +20,16 @@
       video.removeAttribute('autoplay');
       try { video.pause(); } catch (e) {}
     }
+    // Keep the reel playing continuously: restart if the browser pauses it
+    // (tab switch, low-power mode, autoplay hiccups) and loop without a gap.
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var kick = function () { if (!reduce && video.paused) { var p = video.play(); if (p && p.catch) p.catch(function () {}); } };
+    video.addEventListener('ended', function () { video.currentTime = 0; kick(); });
+    video.addEventListener('pause', function () { setTimeout(kick, 300); });
+    video.addEventListener('canplay', kick);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
+    ['touchstart', 'click', 'scroll'].forEach(function (ev) { window.addEventListener(ev, kick, { once: true, passive: true }); });
+    kick();
     if (sound) {
       sound.addEventListener('click', function () {
         video.muted = !video.muted;
@@ -53,10 +63,10 @@
       current = t;
       t.classList.add('on', 'seen');
       seen[t.dataset.idx] = true;
-      sheetNum.textContent = 'No. ' + String(+t.dataset.idx + 1).padStart(2, '0') + ' / ' + total;
-      sheetName.textContent = t.dataset.name;
-      sheetType.textContent = t.dataset.type;
-      sheetNote.textContent = t.dataset.note || 'Case study coming soon.';
+      if (sheetNum) sheetNum.textContent = 'No. ' + String(+t.dataset.idx + 1).padStart(2, '0') + ' / ' + total;
+      if (sheetName) sheetName.textContent = t.dataset.name;
+      if (sheetType) sheetType.textContent = t.dataset.type;
+      if (sheetNote) sheetNote.textContent = t.dataset.note || '';
       render();
     };
     tiles.forEach(function (t) {
