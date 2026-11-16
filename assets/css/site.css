@@ -259,3 +259,22 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 .grid-4{grid-template-columns:repeat(2,1fr)}
 @media (min-width:1100px){.grid-4{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:600px){.grid-4{grid-template-columns:1fr}}
+/* About: stats, on-set mosaic, founder note, crew */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:56px 0 0;padding-top:32px;border-top:1px solid var(--line)}
+.stats div{margin:0}.stats dt{font-size:clamp(36px,4vw,56px);font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--teal)}
+.stats dd{margin:10px 0 0;font-size:15px;color:var(--muted);line-height:1.4}
+.onset{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:auto auto;gap:16px;padding-bottom:24px}
+.onset img{width:100%;height:100%;object-fit:cover;border-radius:16px;display:block}
+.onset-a{grid-row:1/3;aspect-ratio:4/3}.onset-b,.onset-c{aspect-ratio:4/3}
+.founder{display:grid;grid-template-columns:minmax(220px,380px) minmax(0,1fr);gap:64px;align-items:center}
+.founder img{width:100%;aspect-ratio:8/9;object-fit:cover;border-radius:20px;display:block}
+.founder blockquote{margin:0}
+.founder blockquote p{font-size:clamp(24px,2.6vw,36px);line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.founder blockquote footer{margin-top:28px;display:flex;flex-direction:column;gap:4px;font-size:16px}
+.founder blockquote footer span{color:var(--muted)}
+.people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 24px}
+.person{margin:0}.person img{width:100%;aspect-ratio:8/9;object-fit:cover;border-radius:16px;display:block;background:var(--line);filter:grayscale(1);transition:filter .3s ease}
+.person:hover img{filter:none}
+.person h3{margin:16px 0 0;font-size:18px}.person p{margin:4px 0 0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600}
+@media (max-width:960px){.stats{grid-template-columns:repeat(2,1fr)}.founder{grid-template-columns:1fr;gap:32px}.founder img{max-width:360px}.people{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.onset{grid-template-columns:1fr}.onset-a{grid-row:auto}.people{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}}
