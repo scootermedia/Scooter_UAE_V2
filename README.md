@@ -10,6 +10,9 @@ Plain HTML, one CSS file and one small JS file, with no build step and no framew
 | `/` | `index.html` |
 | `/about/` | `about/index.html` |
 | `/real-estate/` | `real-estate/index.html` |
+| `/post-production/` | `post-production/index.html` |
+| `/originals/` | `originals/index.html` |
+| `/work/` | `work/index.html` |
 | `/clients/` | `clients/index.html` |
 | `/ai-films/` | `ai-films/index.html` |
 | `/global/` | `global/index.html` |
@@ -21,24 +24,37 @@ Every page has its own `<title>`, meta description, canonical URL, Open Graph ta
 JSON-LD (Organization, ProfessionalService, Service, FAQPage, BreadcrumbList).
 `sitemap.xml` and `robots.txt` are at the root.
 
-## Before going live
+## Deploying (Cloudflare)
 
-1. **Showreel video:** add `assets/video/showreel.mp4` (and optionally `showreel.webm`).
-   See `assets/video/README.md` for export settings. Until then the hero shows a dark poster.
-2. **Hero poster:** replace `assets/img/hero-poster.jpg` with a still frame from the reel.
-3. **Domain:** the site uses root-relative links (`/about/`), so it must be served from the
-   domain root (`https://scootermedia.ae/`), not a sub-path.
-4. After launch, submit `https://scootermedia.ae/sitemap.xml` in Google Search Console.
+The site deploys to Cloudflare as a Worker with static assets, the same way the current
+scootermedia.ae site does. There is no build step: the repo root is the site.
 
-## Deploying
+| File | What it does |
+|---|---|
+| `wrangler.jsonc` | Worker name (`scooter-uae-v2`), serves the repo root, clean `/about/` URLs, `404.html` for unknown pages |
+| `.assetsignore` | Keeps repo files (README, config) from being published |
+| `_headers` | Security headers and cache rules (CSS/JS cached a year, images and video a day) |
+| `_redirects` | Old URLs from the previous site, e.g. `/crew/` → `/about/#crew` |
 
-This is a plain static site, so any static host works:
+**First deploy (Cloudflare dashboard):**
 
-- **Netlify:** connect this repo and deploy. `netlify.toml` already sets no build step and the root publish directory, overriding the UI settings.
-- **Vercel / Cloudflare Pages:** connect this repo, with no build command and the output directory set to `/`.
-- **GitHub Pages:** Settings → Pages → deploy from `main` / root, then add the custom domain
-  `scootermedia.ae` (this creates a `CNAME` file) and point DNS at GitHub Pages.
-- **Any web server:** upload the folder as is. Configure `404.html` as the not-found page.
+1. Workers & Pages → Create → Import a repository → `scootermedia/Scooter_UAE_V2`.
+2. Build command: leave empty. Deploy command: `npx wrangler deploy`.
+3. Deploy. The site goes live on a `scooter-uae-v2.<account>.workers.dev` preview URL.
+   Check it there first: the live scootermedia.ae is not touched yet.
+
+**Switch scootermedia.ae to this site** (when the preview looks right):
+
+1. Old Worker (`scooter-uae-media`) → Settings → Domains & Routes → remove `scootermedia.ae`
+   (and `www.scootermedia.ae` if present).
+2. This Worker (`scooter-uae-v2`) → Settings → Domains & Routes → Add → Custom domain →
+   `scootermedia.ae`. Add `www.scootermedia.ae` too, or a redirect rule from www to the apex.
+3. Every push to `main` then redeploys automatically.
+4. Submit `https://scootermedia.ae/sitemap.xml` in Google Search Console.
+
+To roll back, move the custom domain back to `scooter-uae-media`.
+
+**From a terminal instead:** `npx wrangler deploy` in the repo root (after `npx wrangler login`).
 
 ## Contact form
 

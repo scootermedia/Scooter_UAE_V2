@@ -1,0 +1,17 @@
+// Cloudflare Workers static-assets deploy. No build step: the repo root is the site.
+// Files listed in .assetsignore (README, this config, etc.) are not published.
+{
+  "name": "scooter-uae-v2",
+  "compatibility_date": "2026-09-10",
+  "assets": {
+    "directory": ".",
+    // /about/ serves about/index.html; /about redirects to /about/
+    "html_handling": "auto-trailing-slash",
+    // Unknown URLs get 404.html with a real 404 status
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "logs": { "enabled": true }
+  },
+  "send_metrics": false
+}

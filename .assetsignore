@@ -1,0 +1,12 @@
+# Repo files that must not be served as part of the site
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+wrangler.toml
+README.md
+**/README.md
+node_modules
+.wrangler
+.dev.vars
+assets/img/clients/sources.json
