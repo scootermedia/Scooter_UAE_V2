@@ -250,3 +250,6 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 @media (max-width:960px){.vgrid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.vgrid{grid-template-columns:1fr;gap:32px}}
 .vgrid+.lnk{margin-top:48px}
+.hero-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px 40px}
+.hero-row .h1{flex:1 1 auto}
+.hero-row .btn{flex:none}
