@@ -266,10 +266,10 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 .onset{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);grid-template-rows:auto auto;gap:16px;padding-bottom:24px}
 .onset img{width:100%;height:100%;object-fit:cover;border-radius:16px;display:block}
 .onset-a{grid-row:1/3;aspect-ratio:4/3}.onset-b,.onset-c{aspect-ratio:4/3}
-.founder{display:grid;grid-template-columns:minmax(220px,380px) minmax(0,1fr);gap:64px;align-items:center}
+.founder{display:grid;grid-template-columns:minmax(220px,420px) minmax(0,1fr);gap:72px;align-items:center}
 .founder img{width:100%;aspect-ratio:8/9;object-fit:cover;border-radius:20px;display:block}
-.founder blockquote{margin:0}
-.founder blockquote p{font-size:clamp(24px,2.6vw,36px);line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.founder blockquote{margin:32px 0 0;padding-left:24px;border-left:3px solid var(--teal)}
+.founder blockquote p{font-size:clamp(20px,1.9vw,26px);line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
 .founder blockquote footer{margin-top:28px;display:flex;flex-direction:column;gap:4px;font-size:16px}
 .founder blockquote footer span{color:var(--muted)}
 @media (max-width:960px){.stats{grid-template-columns:repeat(2,1fr)}.founder{grid-template-columns:1fr;gap:32px}.founder img{max-width:360px}}
@@ -290,3 +290,9 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 .person p{margin:4px 0 0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;line-height:1.4}
 @keyframes crew-roll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.crew-track{animation:none}.crew-roll{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.crew-set[aria-hidden]{display:none}}
+.founder-body .h2{margin-top:4px}
+.founder-bio{margin-top:20px;max-width:620px}
+.founder-facts{display:flex;flex-wrap:wrap;gap:16px 48px;margin:36px 0 0;padding-top:24px;border-top:1px solid var(--line)}
+.founder-facts div{margin:0}.founder-facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.founder-facts dd{margin:6px 0 0;font-size:17px;font-weight:600;color:var(--ink)}
+.founder-body .lnk{display:block;width:max-content;margin-top:32px}
