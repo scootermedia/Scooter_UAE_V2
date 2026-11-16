@@ -136,4 +136,15 @@
       window.location.href = 'mailto:hello@scootermedia.co?subject=' + encodeURIComponent('Brief: ' + (f.get('type') || 'Project') + ' — ' + (f.get('company') || f.get('name') || '')) + '&body=' + encodeURIComponent(build());
     });
   }
+  // Click-to-play YouTube tiles (Work, Originals): load the player only when asked
+  document.querySelectorAll('.vid-play[data-yt]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-yt') + '?autoplay=1&rel=0';
+      f.title = b.getAttribute('aria-label').replace(/^Play /, '');
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      b.parentNode.replaceChild(f, b); f.focus();
+    });
+  });
 })();
