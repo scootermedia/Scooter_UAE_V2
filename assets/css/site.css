@@ -296,3 +296,6 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 .founder-facts div{margin:0}.founder-facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .founder-facts dd{margin:6px 0 0;font-size:17px;font-weight:600;color:var(--ink)}
 .founder-photo .lnk{display:block;width:max-content;margin:16px auto 0}
+/* Headline line 2 starting with a lowercase l: cancel its extra side bearing so it lines up with line 1 */
+.br-d{display:none}
+@media (min-width:961px){.br-d{display:inline}.h1-l2{display:inline-block;margin-left:-.03em}}
