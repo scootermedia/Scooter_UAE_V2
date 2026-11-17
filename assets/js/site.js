@@ -147,4 +147,16 @@
       b.parentNode.replaceChild(f, b); f.focus();
     });
   });
+  // Real estate reels: play self-hosted video on tap, one at a time
+  var reels = document.querySelectorAll('.reel-frame video');
+  document.querySelectorAll('.reel-play').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var v = b.parentNode.querySelector('video');
+      reels.forEach(function (o) { if (o !== v) o.pause(); });
+      v.controls = true; b.hidden = true; v.play(); v.focus();
+    });
+  });
+  reels.forEach(function (v) {
+    v.addEventListener('play', function () { reels.forEach(function (o) { if (o !== v) o.pause(); }); });
+  });
 })();

@@ -305,3 +305,14 @@ a.card:hover .arr,.h-link:hover .arr{transform:translate(2px,-2px)}
 .h-link{color:inherit}.h-link:hover{color:var(--teal)}
 .logo-row-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:600px){.logo-row-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Real estate: vertical reels */
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px;max-width:960px}
+.reel{margin:0}
+.reel-frame{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#111}
+.reel-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.reel-play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.35));cursor:pointer;display:flex;align-items:center;justify-content:center}
+.reel-play svg{width:60px;height:60px;padding:19px;border-radius:50%;background:rgba(15,92,109,.9);transition:transform .2s ease}
+.reel-play:hover svg{transform:scale(1.08)}
+.reel-play:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
+.reel figcaption{margin-top:14px}.reel h3{margin:0;font-size:17px}.reel p{margin:2px 0 0;font-size:14px;color:var(--muted)}
+@media (max-width:900px){.reels{grid-template-columns:repeat(2,minmax(0,1fr))}}
