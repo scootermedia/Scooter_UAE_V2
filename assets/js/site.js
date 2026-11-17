@@ -159,4 +159,26 @@
   reels.forEach(function (v) {
     v.addEventListener('play', function () { reels.forEach(function (o) { if (o !== v) o.pause(); }); });
   });
+  // Count-up numbers (About stats): run once when scrolled into view
+  var counters = document.querySelectorAll('.countup[data-to]');
+  if (counters.length) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var run = function (el) {
+      var to = +el.getAttribute('data-to'), dur = 1800, t0 = null;
+      var step = function (t) {
+        if (!t0) t0 = t;
+        var k = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    if (!reduce && 'IntersectionObserver' in window) {
+      counters.forEach(function (el) { el.textContent = '0'; });
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { io.unobserve(e.target); run(e.target); } });
+      }, { threshold: 0.6 });
+      counters.forEach(function (el) { io.observe(el); });
+    }
+  }
 })();
