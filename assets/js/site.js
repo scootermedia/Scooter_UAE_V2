@@ -12,6 +12,13 @@
     });
   }
 
+  // Frozen header: over the homepage video it is see-through, then turns solid on scroll
+  if (hdr && hdr.classList.contains('hdr--overlay')) {
+    var solid = function () { hdr.classList.toggle('is-solid', window.scrollY > 24); };
+    window.addEventListener('scroll', solid, { passive: true });
+    solid();
+  }
+
   // Hero video: sound toggle; skip autoplay when user prefers reduced motion
   var video = document.querySelector('.hero-v video');
   var sound = document.querySelector('.sound');
