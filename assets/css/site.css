@@ -319,3 +319,4 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 @media (max-width:900px){.reels{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .countup{font-variant-numeric:tabular-nums}
 @media (max-width:600px){.stats{grid-template-columns:1fr 1fr}}
+@media (min-width:961px){.h1-l2-t{margin-left:.034em}}
