@@ -86,7 +86,7 @@
         filter = b.dataset.filter;
         Array.prototype.forEach.call(document.querySelectorAll('.seg button'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
         tiles.forEach(function (t) {
-          var ag = t.dataset.type === 'Agency & studio';
+          var ag = t.dataset.type === 'Partner';
           t.hidden = !(filter === 'all' || (filter === 'agency' ? ag : !ag));
         });
       });
