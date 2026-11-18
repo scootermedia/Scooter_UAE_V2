@@ -43,7 +43,10 @@ h1,h2,h3,p{margin:0}
 /* Header */
 .hdr{position:relative;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;padding-bottom:16px}
-.logo{font-size:24px;font-weight:700;letter-spacing:-.03em}
+.logo{display:inline-flex;align-items:center;line-height:0;color:inherit}
+.logo-svg{height:24px;width:auto;display:block}
+.logo-ftr{color:var(--ink);margin-bottom:12px}
+.logo-ftr .logo-svg{height:26px}
 .nav{display:flex;gap:28px;font-size:14px;font-weight:500}
 .nav a{color:var(--ink-2);padding:8px 0;border-bottom:2px solid transparent}
 .nav a:hover{color:var(--ink)}
