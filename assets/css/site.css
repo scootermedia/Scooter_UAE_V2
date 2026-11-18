@@ -322,3 +322,4 @@ a.card:hover{border-color:var(--teal);transform:translateY(-3px)}
 @media (min-width:961px){.h1-l2-t{margin-left:.034em}}
 .lg-text{font-weight:600;font-size:16px;letter-spacing:-.01em;color:#8a8a8a;text-align:center;line-height:1.1;transition:color .25s ease}
 .tile:hover .lg-text{color:var(--ink)}
+@media (min-width:1100px){.vgrid-4{grid-template-columns:repeat(4,minmax(0,1fr))}}
