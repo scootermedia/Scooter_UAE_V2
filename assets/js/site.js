@@ -181,4 +181,21 @@
       counters.forEach(function (el) { io.observe(el); });
     }
   }
+  // Work: sideways film scroller with previous / next buttons
+  document.querySelectorAll('.vscroll').forEach(function (sc) {
+    var nav = sc.previousElementSibling;
+    if (!nav || !nav.classList.contains('vscroll-nav')) return;
+    var btns = nav.querySelectorAll('.vs-btn');
+    var colW = function () { var f = sc.querySelector('.vid'); return f ? f.getBoundingClientRect().width + 24 : sc.clientWidth / 3; };
+    var update = function () {
+      btns[0].disabled = sc.scrollLeft <= 2;
+      btns[1].disabled = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 2;
+    };
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { sc.scrollBy({ left: colW() * +b.getAttribute('data-dir'), behavior: 'smooth' }); });
+    });
+    sc.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
 })();
