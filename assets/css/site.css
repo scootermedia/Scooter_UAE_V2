@@ -567,3 +567,13 @@ img{border-radius:0}
 @media (max-width:960px){.hdr-cta{display:none}}
 @media (max-width:767px){.logos li{height:84px;padding:14px}.logos img,.logos img[src$=".jpg"],.logos img[src$=".webp"],.logos img[src$=".png"],.logos img[src*="waldorf"]{max-width:100%;max-height:30px}.logos img[src*="waldorf"],.logos img[src$=".jpg"],.logos img[src$=".webp"]{max-height:44px}}
 @media (max-width:959px){.rows>li,.rows>div{grid-template-columns:44px 1fr}.rows p{grid-column:2}}
+/* Full-screen video hero (home): header sits over the film */
+.hdr.hdr--overlay{background:transparent;border-bottom-color:rgba(255,255,255,.18)}
+.hdr--overlay .nav a:hover,.hdr--overlay .nav a[aria-current="page"]{color:#fff;border-bottom-color:#fff}
+.hdr--overlay.is-solid{background:#fff;border-bottom-color:var(--line)}
+.hdr--overlay.is-solid .nav a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.hero-v h1{font-size:clamp(44px,6.6vw,92px);line-height:.98;font-weight:800;letter-spacing:-.045em;max-width:1100px}
+.hero-v .hero-accent{color:#7FC4CF}
+.hero-v .cols p{font-size:clamp(18px,1.6vw,22px)}
+.hero-v .btn-ghost svg{flex:none}
+.hero-v .sound{border-radius:0}
