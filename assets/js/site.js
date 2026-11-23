@@ -235,4 +235,54 @@
       panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Statement: words light up one by one as the reader scrolls through it
+  document.querySelectorAll('[data-words]').forEach(function (el) {
+    if (calm) return;
+    var html = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g, function (m, tag, word) { return tag ? tag : '<span class="sw">' + word + '</span>'; });
+    el.innerHTML = html; el.classList.add('split');
+    var words = el.querySelectorAll('.sw');
+    var light = function () {
+      var r = el.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+      var n = Math.round(p * words.length);
+      words.forEach(function (w, i) { w.classList.toggle('on', i < n); });
+    };
+    window.addEventListener('scroll', light, { passive: true }); window.addEventListener('resize', light); light();
+  });
+
+  // Muted loops (real estate panel): play only while on screen
+  var loops = document.querySelectorAll('video[data-autoplay]');
+  if (loops.length && 'IntersectionObserver' in window && !calm) {
+    var lo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { v.preload = 'auto'; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); } });
+    }, { threshold: 0.25 });
+    loops.forEach(function (v) { lo.observe(v); });
+  }
+
+  // Work gallery: on wide screens the slides move sideways while the page scrolls down
+  document.querySelectorAll('.hscroll').forEach(function (sec) {
+    var track = sec.querySelector('.hscroll-track');
+    if (!track || calm) return;
+    var mq = window.matchMedia('(min-width: 900px)');
+    var dist = 0;
+    var setup = function () {
+      if (!mq.matches) { sec.classList.remove('pinned'); track.style.transform = ''; return; }
+      sec.classList.add('pinned');
+      dist = Math.max(0, track.scrollWidth - track.clientWidth);
+      sec.style.setProperty('--hs-h', (window.innerHeight + dist) + 'px');
+      move();
+    };
+    var move = function () {
+      if (!sec.classList.contains('pinned')) return;
+      var r = sec.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -r.top / Math.max(1, sec.offsetHeight - window.innerHeight)));
+      track.style.transform = 'translate3d(' + (-p * dist) + 'px,0,0)';
+    };
+    window.addEventListener('scroll', move, { passive: true });
+    window.addEventListener('resize', setup);
+    if (mq.addEventListener) mq.addEventListener('change', setup);
+    setup();
+  });
 })();
