@@ -20,7 +20,7 @@
   }
 
   // Hero video: sound toggle; skip autoplay when user prefers reduced motion
-  var video = document.querySelector('.hero-v video');
+  var video = document.querySelector('.film video, .hero-v video');
   var sound = document.querySelector('.sound');
   if (video) {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -117,6 +117,10 @@
   // Contact form → WhatsApp (primary) or email
   var form = document.querySelector('#brief');
   if (form) {
+    // Preselect the offer from links like /contact/?type=real-estate
+    var want = (location.search.match(/[?&]type=([a-z-]+)/) || [])[1];
+    var map = { 'real-estate': 't-real-estate', 'original-content': 't-original' };
+    if (want && map[want]) { var r = document.getElementById(map[want]); if (r) r.checked = true; }
     var build = function () {
       var f = new FormData(form);
       var lines = [
@@ -126,6 +130,7 @@
         'Company: ' + (f.get('company') || ''),
         'Email: ' + (f.get('email') || ''),
         'Phone: ' + (f.get('phone') || ''),
+        'Budget range (private): ' + (f.get('budget') || ''),
         '',
         (f.get('brief') || '')
       ];
@@ -204,5 +209,80 @@
     sc.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
+  });
+  // Calm reveal: elements marked .rv fade up once as they enter the view
+  var rv = document.querySelectorAll('.rv');
+  if (rv.length) {
+    if ('IntersectionObserver' in window) {
+      var ro = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); ro.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      rv.forEach(function (el) { ro.observe(el); });
+    } else { rv.forEach(function (el) { el.classList.add('in-view'); }); }
+  }
+
+  // "Watch the showreel": swap the hero loop for the full showreel with sound
+  document.querySelectorAll('[data-reel-target]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var panel = document.querySelector(b.getAttribute('data-reel-target'));
+      if (!panel) return;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-yt') + '?autoplay=1&rel=0';
+      f.title = 'Scooter showreel';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      panel.innerHTML = ''; panel.appendChild(f);
+      panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+  var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Statement: words light up one by one as the reader scrolls through it
+  document.querySelectorAll('[data-words]').forEach(function (el) {
+    if (calm) return;
+    var html = el.innerHTML.replace(/(<[^>]+>)|([^<\s]+)/g, function (m, tag, word) { return tag ? tag : '<span class="sw">' + word + '</span>'; });
+    el.innerHTML = html; el.classList.add('split');
+    var words = el.querySelectorAll('.sw');
+    var light = function () {
+      var r = el.getBoundingClientRect(), vh = window.innerHeight;
+      var p = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
+      var n = Math.round(p * words.length);
+      words.forEach(function (w, i) { w.classList.toggle('on', i < n); });
+    };
+    window.addEventListener('scroll', light, { passive: true }); window.addEventListener('resize', light); light();
+  });
+
+  // Muted loops (real estate panel): play only while on screen
+  var loops = document.querySelectorAll('video[data-autoplay]');
+  if (loops.length && 'IntersectionObserver' in window && !calm) {
+    var lo = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { v.preload = 'auto'; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); } });
+    }, { threshold: 0.25 });
+    loops.forEach(function (v) { lo.observe(v); });
+  }
+
+  // Work gallery: on wide screens the slides move sideways while the page scrolls down
+  document.querySelectorAll('.hscroll').forEach(function (sec) {
+    var track = sec.querySelector('.hscroll-track');
+    if (!track || calm) return;
+    var mq = window.matchMedia('(min-width: 900px)');
+    var dist = 0;
+    var setup = function () {
+      if (!mq.matches) { sec.classList.remove('pinned'); track.style.transform = ''; return; }
+      sec.classList.add('pinned');
+      dist = Math.max(0, track.scrollWidth - track.clientWidth);
+      sec.style.setProperty('--hs-h', (window.innerHeight + dist) + 'px');
+      move();
+    };
+    var move = function () {
+      if (!sec.classList.contains('pinned')) return;
+      var r = sec.getBoundingClientRect();
+      var p = Math.min(1, Math.max(0, -r.top / Math.max(1, sec.offsetHeight - window.innerHeight)));
+      track.style.transform = 'translate3d(' + (-p * dist) + 'px,0,0)';
+    };
+    window.addEventListener('scroll', move, { passive: true });
+    window.addEventListener('resize', setup);
+    if (mq.addEventListener) mq.addEventListener('change', setup);
+    setup();
   });
 })();

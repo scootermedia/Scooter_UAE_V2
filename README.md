@@ -5,20 +5,19 @@ Plain HTML, one CSS file and one small JS file, with no build step and no framew
 
 ## Pages (one URL each, for SEO)
 
-| URL | File |
-|---|---|
-| `/` | `index.html` |
-| `/about/` | `about/index.html` |
-| `/real-estate/` | `real-estate/index.html` |
-| `/post-production/` | `post-production/index.html` |
-| `/originals/` | `originals/index.html` |
-| `/work/` | `work/index.html` |
-| `/clients/` | `clients/index.html` |
-| `/ai-films/` | `ai-films/index.html` |
-| `/global/` | `global/index.html` |
-| `/news/` | `news/index.html` |
-| `/contact/` | `contact/index.html` |
-| 404 | `404.html` |
+| URL | File | In the menu |
+|---|---|---|
+| `/` | `index.html` | Home |
+| `/original-content-for-brands/` | `original-content-for-brands/index.html` | Originals |
+| `/real-estate-content-dubai/` | `real-estate-content-dubai/index.html` | Real Estate |
+| `/work/` | `work/index.html` | Work (films + full client wall at `#clients`) |
+| `/about/` | `about/index.html` | About (founder, crew, cities, press at `#press`) |
+| `/contact/` | `contact/index.html` | Contact (`?type=real-estate` / `?type=original-content` preselects the offer) |
+| `/ai-films/` | `ai-films/index.html` | Footer + Capabilities only |
+| `/post-production/` | `post-production/index.html` | Footer + Capabilities only |
+| `/global/` | `global/index.html` | Not linked; redirects to scootermedia.co |
+
+Old URLs `/real-estate/`, `/originals/`, `/clients/` and `/news/` redirect via `_redirects`.
 
 Every page has its own `<title>`, meta description, canonical URL, Open Graph tags and
 JSON-LD (Organization, ProfessionalService, Service, FAQPage, BreadcrumbList).

@@ -2,3 +2,13 @@
 /crew        /about/#crew  301
 /crew/       /about/#crew  301
 /index.html  /             301
+
+# Nov 2026 restructure (content-house redesign)
+/real-estate        /real-estate-content-dubai/     301
+/real-estate/       /real-estate-content-dubai/     301
+/originals          /original-content-for-brands/   301
+/originals/         /original-content-for-brands/   301
+/clients            /work/#clients                  301
+/clients/           /work/#clients                  301
+/news               /about/#press                   301
+/news/              /about/#press                   301
