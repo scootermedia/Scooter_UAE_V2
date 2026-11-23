@@ -20,7 +20,7 @@
   }
 
   // Hero video: sound toggle; skip autoplay when user prefers reduced motion
-  var video = document.querySelector('.hero-v video');
+  var video = document.querySelector('.film video, .hero-v video');
   var sound = document.querySelector('.sound');
   if (video) {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -117,6 +117,10 @@
   // Contact form → WhatsApp (primary) or email
   var form = document.querySelector('#brief');
   if (form) {
+    // Preselect the offer from links like /contact/?type=real-estate
+    var want = (location.search.match(/[?&]type=([a-z-]+)/) || [])[1];
+    var map = { 'real-estate': 't-real-estate', 'original-content': 't-original' };
+    if (want && map[want]) { var r = document.getElementById(map[want]); if (r) r.checked = true; }
     var build = function () {
       var f = new FormData(form);
       var lines = [
@@ -126,6 +130,7 @@
         'Company: ' + (f.get('company') || ''),
         'Email: ' + (f.get('email') || ''),
         'Phone: ' + (f.get('phone') || ''),
+        'Budget range (private): ' + (f.get('budget') || ''),
         '',
         (f.get('brief') || '')
       ];
@@ -204,5 +209,30 @@
     sc.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();
+  });
+  // Calm reveal: elements marked .rv fade up once as they enter the view
+  var rv = document.querySelectorAll('.rv');
+  if (rv.length) {
+    if ('IntersectionObserver' in window) {
+      var ro = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); ro.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      rv.forEach(function (el) { ro.observe(el); });
+    } else { rv.forEach(function (el) { el.classList.add('in-view'); }); }
+  }
+
+  // "Watch the showreel": swap the hero loop for the full showreel with sound
+  document.querySelectorAll('[data-reel-target]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var panel = document.querySelector(b.getAttribute('data-reel-target'));
+      if (!panel) return;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-yt') + '?autoplay=1&rel=0';
+      f.title = 'Scooter showreel';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      panel.innerHTML = ''; panel.appendChild(f);
+      panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   });
 })();
