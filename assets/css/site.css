@@ -711,3 +711,8 @@ img{border-radius:0}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}.marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.mset[aria-hidden]{display:none}}
 .marquee.slower .marquee-track{animation-duration:48s}
 #clients .marquee{margin-top:8px}
+/* Lists without number tags */
+.rows>li,.rows>div{grid-template-columns:1fr}
+@media (min-width:960px){.rows.cols-2>li,.rows.cols-2>div{grid-template-columns:5fr 7fr}}
+@media (max-width:959px){.rows>li,.rows>div{grid-template-columns:1fr}.rows p{grid-column:auto}}
+.flow h3{margin-top:0}
