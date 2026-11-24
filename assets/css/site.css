@@ -709,3 +709,5 @@ img{border-radius:0}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:767px){.mset ul li{width:160px;height:104px;padding:18px}.mset img{max-height:44px}.mset img[src$=".jpg"],.mset img[src$=".webp"],.mset img[src$=".png"]{max-height:62px}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}.marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.mset[aria-hidden]{display:none}}
+.marquee.slower .marquee-track{animation-duration:48s}
+#clients .marquee{margin-top:8px}
