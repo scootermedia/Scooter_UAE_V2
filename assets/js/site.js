@@ -285,4 +285,17 @@
     if (mq.addEventListener) mq.addEventListener('change', setup);
     setup();
   });
+  // "Who it's for": swap the audience word every few seconds
+  document.querySelectorAll('.rot').forEach(function (r) {
+    var ws = r.querySelectorAll('.rot-w'); if (ws.length < 2) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    setInterval(function () {
+      if (document.hidden) return;
+      var cur = ws[i]; i = (i + 1) % ws.length; var nxt = ws[i];
+      cur.classList.remove('on'); cur.classList.add('out');
+      nxt.classList.remove('out'); nxt.classList.add('on');
+      setTimeout(function () { cur.classList.remove('out'); }, 750);
+    }, 2600);
+  });
 })();

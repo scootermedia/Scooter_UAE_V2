@@ -729,3 +729,15 @@ img{border-radius:0}
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;width:auto}}
 .who{padding-bottom:0}
 .who+.sec{padding-top:clamp(48px,5vw,72px)}
+/* "Who it's for": one quiet line, only the audience changes */
+.who{padding-bottom:clamp(40px,5vw,72px)}
+.who+.sec{padding-top:clamp(40px,5vw,72px)}
+.who-grid{display:grid;grid-template-columns:1fr;gap:20px 64px;align-items:baseline;border-top:1px solid var(--line);padding-top:clamp(40px,5vw,64px)}
+@media (min-width:960px){.who-grid{grid-template-columns:5fr 7fr}}
+.who-line{margin:0;font-size:clamp(24px,2.4vw,36px);font-weight:300;letter-spacing:-.025em;line-height:1.3;color:var(--ink)}
+.rot{display:inline-grid;vertical-align:bottom;overflow:hidden;color:var(--teal)}
+.rot-w{grid-area:1/1;white-space:nowrap;opacity:0;transform:translateY(60%);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rot-w.on{opacity:1;transform:none}
+.rot-w.out{opacity:0;transform:translateY(-60%)}
+@media (max-width:600px){.rot-w{white-space:normal}}
+@media (prefers-reduced-motion:reduce){.rot-w{transition:none}}
