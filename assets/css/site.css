@@ -727,3 +727,5 @@ img{border-radius:0}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none;flex-wrap:wrap;width:auto}}
+.who{padding-bottom:0}
+.who+.sec{padding-top:clamp(48px,5vw,72px)}
