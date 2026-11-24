@@ -656,3 +656,11 @@ img{border-radius:0}
 .h1 .teal{color:var(--teal)}
 .stats dt{font-weight:200}
 .cta h2{letter-spacing:-.04em}
+/* Real estate panel: separated from the black panel above, reels kept at 9:16 */
+.panel.flip{min-height:0;align-items:center;max-width:var(--wrap);margin:0 auto;padding:clamp(80px,10vw,144px) var(--gutter);gap:clamp(40px,5vw,80px)}
+.panel.flip .panel-body{padding:0}
+.panel.flip .reels-loop{background:none;gap:14px;align-self:center;aspect-ratio:auto}
+.panel.flip .reels-loop video,
+.panel.flip .reels-loop video:is([data-autoplay]){width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;display:block;background:#111}
+@media (min-width:960px){.panel.flip .reels-loop{max-width:640px;justify-self:end;width:100%}}
+@media (max-width:959px){.panel.flip{grid-template-columns:1fr}.panel.flip .reels-loop{order:2}}
