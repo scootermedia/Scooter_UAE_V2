@@ -693,3 +693,19 @@ img{border-radius:0}
 .hero-v .sound,.film .sound{border-radius:50%;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .form .chips label{border-radius:999px}
 @media (prefers-reduced-motion:reduce){.btn:hover,.btn-2:hover,.btn-white:hover,.btn-ghost:hover,.btn-black:hover,.hdr-cta:hover,.vs-btn:hover{transform:none}}
+/* Client logos: moving rows, original colours */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.marquee+.marquee{border-top:0}
+.marquee-track,.mset ul{display:flex;list-style:none;margin:0;padding:0}
+.marquee-track{width:max-content;animation:marquee 60s linear infinite}
+.marquee.slow .marquee-track{animation-duration:72s}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.mset ul li{flex:none;display:flex;align-items:center;justify-content:center;width:220px;height:132px;padding:24px 28px;border-right:1px solid var(--line)}
+.mset img{max-width:100%;max-height:60px;width:auto;height:auto;object-fit:contain;transition:transform .4s var(--ease)}
+.mset img[src$=".jpg"],.mset img[src$=".webp"],.mset img[src$=".png"]{max-height:84px}
+.mset img.dk{filter:brightness(0)}
+.mset li:hover img{transform:scale(1.06)}
+.mset .lg-text{font-size:20px;color:var(--ink)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:767px){.mset ul li{width:160px;height:104px;padding:18px}.mset img{max-height:44px}.mset img[src$=".jpg"],.mset img[src$=".webp"],.mset img[src$=".png"]{max-height:62px}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}.marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.mset[aria-hidden]{display:none}}
