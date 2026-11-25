@@ -298,4 +298,9 @@
       setTimeout(function () { cur.classList.remove('out'); }, 750);
     }, 2600);
   });
+  // YouTube thumbnails: if the HD image is missing (YouTube serves a 120px placeholder), use the standard one
+  document.querySelectorAll('img[src*="i.ytimg.com"][src*="maxresdefault"]').forEach(function (im) {
+    var fix = function () { if (im.naturalWidth && im.naturalWidth <= 120) im.src = im.src.replace('maxresdefault', 'hqdefault'); };
+    if (im.complete) fix(); else im.addEventListener('load', fix);
+  });
 })();
