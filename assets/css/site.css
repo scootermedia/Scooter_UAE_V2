@@ -745,3 +745,10 @@ img{border-radius:0}
 .hero-home{padding-top:clamp(96px,13vw,184px);padding-bottom:clamp(40px,5vw,72px)}
 .hero-home .h1{font-size:clamp(48px,7.2vw,112px);max-width:1180px}
 .hero-home+.statement{padding-top:clamp(48px,6vw,96px);border-top:1px solid var(--line)}
+/* Minimal play button: white triangle only, no circle */
+.vid-icon{background:none!important;box-shadow:none!important;border-radius:0;width:64px;height:64px;margin:-32px 0 0 -32px}
+.vid-icon svg{width:44px;height:44px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.45));transition:transform .35s var(--ease),opacity .35s var(--ease);opacity:.92}
+.vid-play:hover .vid-icon{transform:none}
+.vid-play:hover .vid-icon svg{transform:scale(1.1);opacity:1}
+.reel-play svg{background:none!important;box-shadow:none!important;border-radius:0;padding:0;width:40px;height:40px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.45));opacity:.92;transition:transform .35s var(--ease),opacity .35s var(--ease)}
+.reel-play:hover svg{transform:scale(1.1);opacity:1}
