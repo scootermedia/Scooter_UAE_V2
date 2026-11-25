@@ -752,3 +752,7 @@ img{border-radius:0}
 .vid-play:hover .vid-icon svg{transform:scale(1.1);opacity:1}
 .reel-play svg{background:none!important;box-shadow:none!important;border-radius:0;padding:0;width:40px;height:40px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.45));opacity:.92;transition:transform .35s var(--ease),opacity .35s var(--ease)}
 .reel-play:hover svg{transform:scale(1.1);opacity:1}
+/* Urbanape stills link to YouTube */
+.stills .still{display:block;overflow:hidden;cursor:pointer}
+.stills .still img{transition:transform .5s ease,opacity .3s ease}
+.stills .still:hover img{transform:scale(1.03);opacity:.9}
