@@ -139,7 +139,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.reportValidity()) return;
-      window.open('https://wa.me/919051222997?text=' + encodeURIComponent(build()), '_blank', 'noopener');
+      window.open('https://wa.me/971585752997?text=' + encodeURIComponent(build()), '_blank', 'noopener');
     });
     var mail = document.querySelector('[data-act="email"]');
     if (mail) mail.addEventListener('click', function () {

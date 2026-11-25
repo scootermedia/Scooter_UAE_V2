@@ -57,7 +57,7 @@ To roll back, move the custom domain back to `scooter-uae-media`.
 
 ## Contact form
 
-There is no backend. The brief form opens WhatsApp (+91 905 122 2997) or the visitor's
+There is no backend. The brief form opens WhatsApp (+971 58 575 2997) or the visitor's
 email app with the brief pre-filled. To collect submissions server-side instead, point
 the `<form id="brief">` action at a form service (Formspree, Netlify Forms, etc.).
 
