@@ -758,3 +758,6 @@ img{border-radius:0}
 .stills .still:hover img{transform:scale(1.03);opacity:.9}
 /* "Thirteen" written as a word in the figures row */
 .figures dt.fig-word{font-size:clamp(30px,3.6vw,54px);letter-spacing:-.03em;height:clamp(48px,5.6vw,84px);display:flex;align-items:flex-end;justify-content:center}
+/* Home Urbanape panel: show the full 16:9 frame, no crop */
+.panel-media.panel-media--frame{aspect-ratio:16/9}
+@media (min-width:960px){.panel-media.panel-media--frame{aspect-ratio:16/9;align-self:center;margin:0 0 0 clamp(24px,4vw,64px)}}
